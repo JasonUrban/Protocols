@@ -1,4 +1,6 @@
-package Diffie_Hellman;
+package com.bsuir.by.Diffie_Hellman;
+
+import com.bsuir.by.Server;
 
 import java.io.*;
 import java.math.BigInteger;
@@ -75,22 +77,7 @@ public class Alice {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (sois != null) {
-                    sois.close();
-                }
-                if (soos != null) {
-                    soos.close();
-                }
-                if (clientAccepted != null) {
-                    clientAccepted.close();
-                }
-                if (serverSocket != null) {
-                    serverSocket.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Server.closeConnection(serverSocket, clientAccepted, sois, soos);
         }
     }
 }

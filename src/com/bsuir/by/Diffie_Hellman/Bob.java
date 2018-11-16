@@ -1,4 +1,4 @@
-package Diffie_Hellman;
+package com.bsuir.by.Diffie_Hellman;
 
 import java.io.*;
 import java.math.BigInteger;
