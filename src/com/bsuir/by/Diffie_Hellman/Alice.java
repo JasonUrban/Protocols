@@ -37,11 +37,11 @@ public class Alice {
                     p = scanner.nextInt();
                     g = scanner.nextInt();
                     a = scanner.nextInt();
-                    if(a <= 0 || g <= 0) {
+                    if (a <= 0 || g <= 0) {
                         System.out.println("a and g must be positive!");
                         continue;
                     }
-                    if(a >= p - 1 || g >= p - 1) {
+                    if (a >= p - 1 || g >= p - 1) {
                         System.out.println("a and g must be less than p - 1!");
                         continue;
                     }
