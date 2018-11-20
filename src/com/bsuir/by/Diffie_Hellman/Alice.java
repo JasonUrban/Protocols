@@ -6,6 +6,7 @@ import java.io.*;
 import java.math.BigInteger;
 import java.net.*;
 import java.security.SecureRandom;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Alice {
@@ -34,9 +35,14 @@ public class Alice {
                 while (true) {
                     System.out.println("Input parameters p, g and secret key a:");
                     scanner = new Scanner(System.in);
-                    p = scanner.nextInt();
-                    g = scanner.nextInt();
-                    a = scanner.nextInt();
+                    try {
+                        p = scanner.nextInt();
+                        g = scanner.nextInt();
+                        a = scanner.nextInt();
+                    } catch(InputMismatchException e) {
+                        System.out.println("Incorrect input!");
+                        continue;
+                    }
                     if (a <= 0 || g <= 0) {
                         System.out.println("a and g must be positive!");
                         continue;
