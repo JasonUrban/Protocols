@@ -24,7 +24,7 @@ public class Bob {
             switch (choice) {
                 case '1':
                     while (true) {
-                        System.out.println("Input parameters p, g and secret key a:");
+                        System.out.println("Input secret key b:");
                         scanner = new Scanner(System.in);
                         try {
                             b = scanner.nextInt();
@@ -33,7 +33,7 @@ public class Bob {
                             continue;
                         }
                         if (b <= 0) {
-                            System.out.println("a and g must be positive!");
+                            System.out.println("b must be positive!");
                             continue;
                         }
                         if (b >= p - 1) {
