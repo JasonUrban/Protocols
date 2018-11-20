@@ -61,7 +61,7 @@ public class Alice {
             default:
                 do {
                     SecureRandom random = new SecureRandom();
-                    p = random.nextInt(1000000);
+                    p = random.nextInt(1000000) + 1;
                     g = random.nextInt(p - 1);
                     a = random.nextInt(p - 1);
                 } while (!isPrime(p) || !isPrime(g) || !isPrime((p - 1) / 2));
