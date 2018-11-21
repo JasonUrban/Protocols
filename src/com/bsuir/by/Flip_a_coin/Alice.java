@@ -9,18 +9,9 @@ import java.security.SecureRandom;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Alice {
-    private static boolean isPrime(long n) {
-        if (n % 2L == 0L) {
-            return false;
-        }
-        for (long i = 3L; i * i <= n; i += 2L) {
-            if (n % i == 0L)
-                return false;
-        }
-        return true;
-    }
+import static com.bsuir.by.Server.isPrime;
 
+public class Alice {
     public static void main(String[] arg) {
         ServerSocket serverSocket = null;
         Socket clientAccepted = null;
