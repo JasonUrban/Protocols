@@ -34,11 +34,6 @@ public class Alice {
                         System.out.println("Incorrect input!");
                         continue;
                     }
-                    int temp = new BigInteger(Integer.toString(g)).modPow(new BigInteger(Integer.toString(p - 1)), new BigInteger(Integer.toString(p))).intValue();
-                    if (temp != 1 % p) {
-                        System.out.println("Wrong parameter g! It must be primitive root modulo p!");
-                        continue;
-                    }
                     if (p <= 0 || a <= 0 || g <= 0) {
                         System.out.println("p, a and g must be positive!");
                         continue;
@@ -48,6 +43,11 @@ public class Alice {
                         continue;
                     }
                     if (isPrime(p) && isPrime(g) && isPrime((p - 1) / 2)) {
+                        int temp = new BigInteger(Integer.toString(g)).modPow(new BigInteger(Integer.toString(p - 1)), new BigInteger(Integer.toString(p))).intValue();
+                        if (temp != 1 % p) {
+                            System.out.println("Wrong parameter g! It must be primitive root modulo p!");
+                            continue;
+                        }
                         break;
                     } else {
                         System.out.println("p, (p - 1) / 2 and g must be prime numbers!");
