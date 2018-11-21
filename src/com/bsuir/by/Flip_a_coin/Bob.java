@@ -3,9 +3,9 @@ package com.bsuir.by.Flip_a_coin;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.*;
-import java.security.SecureRandom;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Bob {
     public static void main(String[] arg) {
@@ -42,9 +42,8 @@ public class Bob {
                     }
                     break;
                 default:
-                    SecureRandom random = new SecureRandom();
-                    b = random.nextBoolean();
-                    k = random.nextInt(1000000);
+                    b = ThreadLocalRandom.current().nextBoolean();
+                    k = ThreadLocalRandom.current().nextInt(10000, 1000000 + 1);
             }
             int r = new BigInteger(Integer.toString(b ? y : 1)).multiply(new BigInteger(Integer.toString(g)).pow(k)).mod(new BigInteger(Integer.toString(p))).intValue();
             coos.writeObject(r);

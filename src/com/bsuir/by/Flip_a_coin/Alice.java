@@ -5,9 +5,9 @@ import com.bsuir.by.Server;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.*;
-import java.security.SecureRandom;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.bsuir.by.Server.isPrime;
 
@@ -57,10 +57,9 @@ public class Alice {
             default:
                 int temp;
                 do {
-                    SecureRandom random = new SecureRandom();
-                    p = random.nextInt(1000000) + 2;
-                    g = random.nextInt(p - 1);
-                    x = random.nextInt(1000000);
+                    p = ThreadLocalRandom.current().nextInt(2, 1000000 + 1);
+                    g = ThreadLocalRandom.current().nextInt(2, (p - 1) + 1);
+                    x = ThreadLocalRandom.current().nextInt(10000, 1000000 + 1);
                     temp = new BigInteger(Integer.toString(g)).modPow(new BigInteger(Integer.toString(p - 1)), new BigInteger(Integer.toString(p))).intValue();
                 } while (!isPrime(p) || !isPrime(g) || !isPrime((p - 1) / 2) || temp != 1 % p);
         }
@@ -95,8 +94,7 @@ public class Alice {
                     }
                     break;
                 default:
-                    SecureRandom random = new SecureRandom();
-                    c = random.nextBoolean();
+                    c = ThreadLocalRandom.current().nextBoolean();
             }
             soos.writeObject(c);
             System.out.println("Sent c value: " + c);

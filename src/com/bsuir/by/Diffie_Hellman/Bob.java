@@ -3,9 +3,9 @@ package com.bsuir.by.Diffie_Hellman;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.*;
-import java.security.SecureRandom;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Bob {
     public static void main(String[] arg) {
@@ -44,8 +44,7 @@ public class Bob {
                     }
                     break;
                 default:
-                    SecureRandom random = new SecureRandom();
-                    b = random.nextInt(p - 1);
+                    b = ThreadLocalRandom.current().nextInt(10000, 1000000 + 1);
             }
             int B = new BigInteger(Integer.toString(g)).modPow(new BigInteger(Integer.toString(b)), new BigInteger(Integer.toString(p))).intValue();
             coos.writeObject(B);
