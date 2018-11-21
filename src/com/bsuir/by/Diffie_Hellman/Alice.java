@@ -39,12 +39,17 @@ public class Alice {
                         p = scanner.nextInt();
                         g = scanner.nextInt();
                         a = scanner.nextInt();
-                    } catch(InputMismatchException e) {
+                    } catch (InputMismatchException e) {
                         System.out.println("Incorrect input!");
                         continue;
                     }
-                    if (a <= 0 || g <= 0) {
-                        System.out.println("a and g must be positive!");
+                    int temp = new BigInteger(Integer.toString(g)).modPow(new BigInteger(Integer.toString(p - 1)), new BigInteger(Integer.toString(p))).intValue();
+                    if (temp != 1 % p) {
+                        System.out.println("Wrong parameter g! It must be primitive root modulo p!");
+                        continue;
+                    }
+                    if (p <= 0 || a <= 0 || g <= 0) {
+                        System.out.println("p, a and g must be positive!");
                         continue;
                     }
                     if (a >= p - 1 || g >= p - 1) {
@@ -59,12 +64,14 @@ public class Alice {
                 }
                 break;
             default:
+                int temp;
                 do {
                     SecureRandom random = new SecureRandom();
-                    p = random.nextInt(1000000) + 1;
+                    p = random.nextInt(1000000) + 2;
                     g = random.nextInt(p - 1);
                     a = random.nextInt(p - 1);
-                } while (!isPrime(p) || !isPrime(g) || !isPrime((p - 1) / 2));
+                    temp = new BigInteger(Integer.toString(g)).modPow(new BigInteger(Integer.toString(p - 1)), new BigInteger(Integer.toString(p))).intValue();
+                } while (!isPrime(p) || !isPrime(g) || !isPrime((p - 1) / 2) || temp != 1 % p);
         }
         try {
             System.out.println("Alice listening....");
